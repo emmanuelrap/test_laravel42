@@ -35,11 +35,6 @@ function Form() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-
     // name oR cognome make uppercase
     if (name == "nome") {
       const upperCaseValue = value.toUpperCase();
@@ -49,9 +44,7 @@ function Form() {
           nome: upperCaseValue,
         });
       }
-    }
-
-    if (name == "cognome") {
+    } else if (name == "cognome") {
       const upperCaseValue = value.toUpperCase();
       if (/^[A-Z]*$/.test(upperCaseValue)) {
         setFormData({
@@ -59,6 +52,11 @@ function Form() {
           cognome: upperCaseValue,
         });
       }
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
     }
   };
 
